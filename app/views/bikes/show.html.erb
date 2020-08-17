@@ -1,0 +1,9 @@
+<h1><%= @bike.model %></h1>
+
+<p>Type : <%= @bike.bike_type %></p>
+
+<p>Owner's Avatar</p>
+<%= @bike.user.first_name %>
+
+<%= @bike.price %><i class="fas fa-euro-sign"></i>
+<p>per day</p>
