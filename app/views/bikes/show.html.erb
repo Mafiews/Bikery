@@ -1,9 +1,30 @@
-<h1><%= @bike.model %></h1>
+<div class="container">
+  <div class="row justify-content-md-center">
+      <div class="col-8">
+        <h1><%= @bike.model %></h1>
+        <br>
+        <p><i class="fas fa-bicycle"></i> <strong>Type :</strong> <%= @bike.bike_type %></p>
+        <p><i class="fas fa-battery-full"></i> <strong>Condition :</strong> <%= @bike.condition %></p>
+        <p><i class="fas fa-map-marker-alt"></i> <strong> Location :</strong> <%= @bike.user.address %></p>
+        <p><i class="fas fa-info-circle"></i> <strong>Description :</strong></p>
+        <p><%= @bike.description %></p>
+        <%= link_to 'Back', bikes_path, class: "btn btn-success text-white" %>
+      </div>
 
-<p>Type : <%= @bike.bike_type %></p>
+      <div class="col-3 text-center mt-2">
+        <img class="avatar-large mb-1" alt="avatar-large" src="https://kitt.lewagon.com/placeholder/users/arthur-littm" />
+        <p><%= @bike.user.first_name %> <%= @bike.user.last_name.first %>.</p>
 
-<p>Owner's Avatar</p>
-<%= @bike.user.first_name %>
+        <p><i class="fas fa-euro-sign"></i> <strong><%= @bike.price %></strong> per day</p>
+        <p><i class="fas fa-calendar-alt"></i></p>
+        <p>Pick-up date & time</p>
+        <p>Return date & time</p>
+        <%= link_to "Book now", "#", class: "btn btn-success text-white" %>
+        <br>
+        <p>Price x days</p>
+        <p>Total : €</p>
+      </div>
+    </div>
 
-<%= @bike.price %><i class="fas fa-euro-sign"></i>
-<p>per day</p>
+  </div>
+</div>
