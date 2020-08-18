@@ -3,29 +3,32 @@
 
 
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('https://www.denverbike.com/upload/734/cms/516769/fr/22850/bannerroute66denver.jpg');">
-  <div class="title-site">
-    <h1> Bikery </h1>
-    <p>Purpose your bike or rent one !</p>
-  </div>
-      <div class="form-row rental-form" style="width: 400px; margin: 0 auto;">
-        <h2>Choose your rental</h2>
-        <%= render "shared/list" %>
-        <div class="d-flex">
-          <div class="row">
-          <%= simple_form_for :search, method: "get" do |f| %>
-            <div class="d-flex">
-              <%= f.input :starts_at, as: :string, required: false, input_html: {class: "datepicker"} %>
-              <%= f.input :ends_at, as: :string, required: false, input_html: {class: "datepicker"} %>
-            </div>
-            <%= f.button :submit, "Go", class: "btn btn-info" %>
-        <% end %>
 
-          </div>
-        </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="title-site">
+        <h1> Bikery </h1>
+        <p>Purpose your bike or rent one !</p>
+      </div>
 
     </div>
-</div>
+    <div class="col-sm-6">
+      <div class=" style=">
+        <h2 class="title">Choose your rental</h2>
+        <div class="form-inline">
+          <%= simple_form_for :search, method: "get" do |f| %>
+            <%= render "shared/list" %>
+            <%= f.input :starts_at, as: :string, required: false, input_html: {class: "datepicker"}, label: false, placeholder: "start at" %>
+            <%= f.input :ends_at, as: :string, required: false, input_html: {class: "datepicker"}, label: false, placeholder: "end at" %>
+            <%= f.button :submit, "Go", class: "btn btn-info" %>
+          <% end %>
+        </div>
+      </div>
 
+    </div>
+
+  </div>
+</div>
 
 
 

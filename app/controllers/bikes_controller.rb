@@ -3,7 +3,6 @@ class BikesController < ApplicationController
   before_action :set_bike, only: [:show, :edit, :update, :destroy]
   def index
     @bikes = Bike.all
-    # @api_key = AIzaSyAnyVo9HyzR3Mr_13s4n6FBlDXqymvYeY4
   end
 
   def show
@@ -51,11 +50,10 @@ class BikesController < ApplicationController
   private
 
   def bike_params
-    params.require(:bike).permit(:model, :bike_type, :condition, :price, :description, :availability)
+    params.require(:bike).permit(:model, :bike_type, :condition, :price, :description, :photo, :availability)
   end
 
   def set_bike
     @bike = Bike.find(params[:id])
   end
 end
-

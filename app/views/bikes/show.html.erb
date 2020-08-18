@@ -6,9 +6,12 @@
       <div class="col-8">
         <h1><%= @bike.model %></h1>
 
+        <%= cl_image_tag @bike.photo.key, height: 200, class: "rounded mb-3" %>
+        <br>
+
         <% if policy(@bike).edit? %>
-          <%= link_to "Edit", edit_bike_path(@bike), class: "btn btn-success text-white mb-3" %>
-          <%= link_to "Delete", bike_path(@bike), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-success text-white mb-3" %>
+          <%= link_to "Edit", edit_bike_path(@bike), class: "btn btn-success text-white my-3" %>
+          <%= link_to "Delete", bike_path(@bike), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-success text-white my-3" %>
         <% end %>
 
         <p><i class="fas fa-bicycle"></i> <strong>Type :</strong> <%= @bike.bike_type %></p>
@@ -21,7 +24,7 @@
 
       <div class="col-3 text-center mt-2">
 
-        <img class="avatar-large mb-1" alt="avatar-large" src="https://kitt.lewagon.com/placeholder/users/arthur-littm" />
+        <%= cl_image_tag @bike.user.photo.key, class: "avatar-large mb-1" %>
         <p><%= @bike.user.first_name %> <%= @bike.user.last_name.first %>.</p>
 
         <p><i class="fas fa-euro-sign"></i> <strong><%= @bike.price %></strong> per day</p>

@@ -2,35 +2,27 @@
   <div class="row justify-content-center">
     <h1>See available bikes around you</h1>
   </div>
+  <div class="row justify-content-center">
+    <%= link_to 'Back to homepage', root_path, class: "btn btn-success text-white" %>
+  </div>
 
   <div class="row justify-content-center">
-    <div class="col-12 col-lg-6">
-      <div class="card-product">
-        <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-        <div class="card-product-infos">
-          <h2>Product name</h2>
-          <p>Product description with <strong>relevant info</strong> only.</p>
+    <% @bikes.each do |bike| %>
+      <div class="col-12 col-lg-4">
+        <div class="card-product">
+          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+          <div class="card-product-infos">
+            <h2><%= bike.model %></h2>
+            <h5><i class="fas fa-bicycle"></i> <%= bike.bike_type %></h5>
+            <h5><i class="fas fa-battery-full"></i> <%= bike.condition %></h5>
+            <h5><i class="fas fa-euro-sign"></i> <%= bike.price %></h5>
+          </div>
+          <%= link_to "", bike_path(bike), class: 'card-link' %>
         </div>
       </div>
+    <% end %>
 
-      <div class="card-product">
-        <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-        <div class="card-product-infos">
-          <h2>Product name</h2>
-          <p>Product description with <strong>relevant info</strong> only.</p>
-        </div>
-      </div>
-
-      <div class="card-product">
-        <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-        <div class="card-product-infos">
-          <h2>Product name</h2>
-          <p>Product description with <strong>relevant info</strong> only.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-12 col-lg-6">
+    <div class="col-12 col-lg-8">
       <div id='map' style='width: 550px; height: 500px;'></div>
       <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
       <link
@@ -48,8 +40,8 @@
       var map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [-79.4512, 43.6568],
-      zoom: 13
+      center: [2.379998, 48.865127],
+      zoom: 15
       });
 
       map.addControl(
@@ -64,8 +56,4 @@
       </script>
     </div>
   </div>
-</div>
-
-<div class="container">
-  <p><%= link_to "Back to homepage", root_path %></p>
 </div>
