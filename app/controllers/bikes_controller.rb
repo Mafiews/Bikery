@@ -3,6 +3,7 @@ class BikesController < ApplicationController
   before_action :set_bike, only: [:show, :edit, :update, :destroy]
   def index
     @bikes = Bike.all
+    # @api_key = AIzaSyAnyVo9HyzR3Mr_13s4n6FBlDXqymvYeY4
   end
 
   def show
