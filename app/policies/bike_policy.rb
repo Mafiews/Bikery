@@ -4,4 +4,6 @@ class BikePolicy < ApplicationPolicy
       scope.all
     end
   end
+
+
 end
