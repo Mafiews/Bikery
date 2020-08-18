@@ -1,5 +1,4 @@
 class RentalsController < ApplicationController
-
   def create
     start_date = Date.parse rental_params[:start_date]
     end_date = Date.parse rental_params[:end_date]
@@ -17,6 +16,16 @@ class RentalsController < ApplicationController
     end
   end
 
+  def review
+    @review = Review.new(review_params)
+    @review.rental = @rental
+    if @review.save
+      redirect_to rental_path(@rental)
+    else
+      render "review_form"
+    end
+  end
+  
   def show
     set_rental
     authorize @rental
@@ -28,6 +37,10 @@ class RentalsController < ApplicationController
     params.require(:rental).permit(:start_date, :end_date)
   end
 
+  def review_params
+    params.require(:review).permit(:rating, :content)
+  end
+    
   def set_rental
     @rental = Rental.find(params[:id])
   end
