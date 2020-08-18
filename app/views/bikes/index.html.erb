@@ -10,14 +10,15 @@
     <% @bikes.each do |bike| %>
       <div class="col-12 col-lg-4">
         <div class="card-product">
-          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+          <%= link_to bike_path(bike), class: 'card-link' do %>
+            <%= cl_image_tag bike.photo.key, height: 200, class: "card-img rounded" %>
+          <% end %>
           <div class="card-product-infos">
             <h2><%= bike.model %></h2>
             <h5><i class="fas fa-bicycle"></i> <%= bike.bike_type %></h5>
             <h5><i class="fas fa-battery-full"></i> <%= bike.condition %></h5>
             <h5><i class="fas fa-euro-sign"></i> <%= bike.price %></h5>
           </div>
-          <%= link_to "", bike_path(bike), class: 'card-link' %>
         </div>
       </div>
     <% end %>

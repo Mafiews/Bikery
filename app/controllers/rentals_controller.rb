@@ -11,7 +11,7 @@ class RentalsController < ApplicationController
     authorize @rental
     @rental.save
     if @rental.save
-      redirect_to bike_rental_path(@rental.bike_id)
+      redirect_to rental_path(@rental)
     else
       redirect_to bike_path(@rental.bike)
     end
@@ -20,6 +20,10 @@ class RentalsController < ApplicationController
   def show
     set_rental
     authorize @rental
+  end
+
+  def index
+    @rentals = Rental.where(user_id: current_user.id)
   end
 
   private
