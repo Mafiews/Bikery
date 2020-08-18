@@ -1,0 +1,38 @@
+<%= render '/shared/navbar' %>
+
+<div class="container">
+  <div class="row justify-content-md-center">
+
+      <div class="col-8">
+        <h1><%= @bike.model %></h1>
+
+        <% if policy(@bike).edit? %>
+          <%= link_to "Edit", edit_bike_path(@bike), class: "btn btn-success text-white mb-3" %>
+          <%= link_to "Delete", bike_path(@bike), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-success text-white mb-3" %>
+        <% end %>
+
+        <p><i class="fas fa-bicycle"></i> <strong>Type :</strong> <%= @bike.bike_type %></p>
+        <p><i class="fas fa-battery-full"></i> <strong>Condition :</strong> <%= @bike.condition %></p>
+        <p><i class="fas fa-map-marker-alt"></i> <strong> Location :</strong> <%= @bike.user.address %></p>
+        <p><i class="fas fa-info-circle"></i> <strong>Description :</strong></p>
+        <p><%= @bike.description %></p>
+        <%= link_to 'Back', bikes_path, class: "btn btn-success text-white" %>
+      </div>
+
+      <div class="col-3 text-center mt-2">
+
+        <img class="avatar-large mb-1" alt="avatar-large" src="https://kitt.lewagon.com/placeholder/users/arthur-littm" />
+        <p><%= @bike.user.first_name %> <%= @bike.user.last_name.first %>.</p>
+
+        <p><i class="fas fa-euro-sign"></i> <strong><%= @bike.price %></strong> per day</p>
+        <p><i class="fas fa-calendar-alt"></i></p>
+        <p>Pick-up date</p>
+        <p>Return date</p>
+        <%= link_to "Book now", "#", class: "btn btn-success text-white" %>
+        <br>
+        <p>Price x days</p>
+        <p>Total : €</p>
+      </div>
+
+  </div>
+</div>
