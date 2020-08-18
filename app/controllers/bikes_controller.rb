@@ -9,6 +9,7 @@ class BikesController < ApplicationController
   def show
     set_bike
     authorize @bike
+    @rental = Rental.new
   end
 
   def edit
