@@ -17,21 +17,16 @@ class BikesController < ApplicationController
 
   def update
     set_bike
+    authorize @bike
     @bike.update(bike_params)
     redirect_to bike_path(@bike)
-    authorize @bike
   end
 
   def destroy
     set_bike
+    authorize @bike
     @bike.destroy
     redirect_to bikes_path
-  end
-
-  private
-
-  def set_bike
-    @bike = Bike.find(params[:id])
   end
 
   def new
@@ -55,6 +50,10 @@ class BikesController < ApplicationController
 
   def bike_params
     params.require(:bike).permit(:model, :bike_type, :condition, :price, :description, :availability)
+  end
+
+  def set_bike
+    @bike = Bike.find(params[:id])
   end
 end
 
