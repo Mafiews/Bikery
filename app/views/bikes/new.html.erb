@@ -1,0 +1,16 @@
+<%= render 'shared/navbar' %>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <%= simple_form_for(@bike) do |f| %>
+        <%= f.input :model%>
+        <%= f.input :bike_type%>
+        <%= f.input :condition%>
+        <%= f.input :price%>
+        <%= f.input :description%>
+        <%= f.submit %>
+      <% end %>
+    </div>
+  </div>
+</div>
