@@ -61,16 +61,11 @@
 
       // Add zoom and rotation controls to the map.
       map.addControl(new mapboxgl.NavigationControl());
-
-      map.scrollZoom.enable({ around: 'center' })
-      map.doubleClickZoom.enable();
-
       </script>
     </div>
   </div>
 </div>
 
 <div class="container">
-  <p><%= link_to "Rent your bike!", "rental#create" %></p>
-  <p><%= link_to "Back to homepage", "root" %></p>
+  <p><%= link_to "Back to homepage", root_path %></p>
 </div>
