@@ -26,11 +26,15 @@
 
         <p><i class="fas fa-euro-sign"></i> <strong><%= @bike.price %></strong> per day</p>
         <p><i class="fas fa-calendar-alt"></i></p>
-        <p>Pick-up date</p>
-        <p>Return date</p>
-        <%= link_to "Book now", "#", class: "btn btn-success text-white" %>
+        <div class="rental-days">
+          <%= simple_form_for [@bike, @rental] do |f| %>
+            <%= f.input :start_date, as: : %>
+            <%= f.input :end_date %>
+            <%= f.submit lable:"Book now" %>
+          <% end %>
+        </div>
         <br>
-        <p>Price x days</p>
+        <p>Price x da</p>
         <p>Total : €</p>
       </div>
 
