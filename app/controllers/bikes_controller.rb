@@ -10,16 +10,15 @@ class BikesController < ApplicationController
     @start_date = Date.parse params[:starts_at]
     @end_date = Date.parse params[:ends_at]
     @type = params[:bike_type]
-
     if @type.present?
       @bikes = Bike.where(bike_type: @type, starts_at: @start_date, ends_date: @ends_date)
     end
-    # @api_key = AIzaSyAnyVo9HyzR3Mr_13s4n6FBlDXqymvYeY4
   end
 
   def show
     set_bike
     authorize @bike
+    @rental = Rental.new
   end
 
   def edit
@@ -61,11 +60,10 @@ class BikesController < ApplicationController
   private
 
   def bike_params
-    params.require(:bike).permit(:model, :bike_type, :condition, :price, :description, :availability)
+    params.require(:bike).permit(:model, :bike_type, :condition, :price, :description, :photo, :availability)
   end
 
   def set_bike
     @bike = Bike.find(params[:id])
   end
 end
-

@@ -4,8 +4,8 @@
   <div class="row justify-content-center">
     <div class="col-11">
       <h1>Edit</h1>
-      <p><em><%# render '/shared/form' %></em></p>
-      <%= link_to "Back", bike_path(@bike), class: "btn btn-success" %>
+      <%= render 'form' %>
+      <%= link_to "Back", bike_path(@bike), class: "btn btn-success my-3" %>
     </div>
   </div>
 </div>
