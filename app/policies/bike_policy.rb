@@ -4,7 +4,7 @@ class BikePolicy < ApplicationPolicy
       scope.all
     end
   end
-
+  
   def index?
     true
   end
