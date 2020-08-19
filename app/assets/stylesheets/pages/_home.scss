@@ -1,8 +1,14 @@
 // Specific CSS for your home-page
 .title-site {
   position: absolute;
-  top: 15px;
-  left: 30px;
+  top: -153px;
+  left: 49px;
+  p {
+    font-size: 22px;
+    color: lightgray;
+    opacity: 2.7;
+    text-shadow: 2px 4px 16px rgba(0, 0, 0, 0.2);
+  }
 }
 
 .banner {

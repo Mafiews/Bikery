@@ -61,7 +61,7 @@ user3.photo.attach(io: image3, filename: "user#{user3.id}.png", content_type: "i
 
 
 bike = Bike.new(
-  model: Faker::Movies::BackToTheFuture.character,
+  model: "Marty McFly",
   bike_type: "flying",
   condition: "new",
   price: 49,
@@ -77,9 +77,10 @@ bike1 = Bike.new(
   bike_type: "electric",
   condition: "new",
   price: 40,
-  description: Faker::Quote.matz
+  description: Faker::Quote.matz,
+  address: "14 rue Crespin du Gast, 75011 Paris"
   )
-bike1.user_id = 1
+bike1.user_id = 2
 bike1.save!
 img1 = URI.open("https://elite-motor.com/pub/media/catalog/product/cache/c687aa7517cf01e65c009f6943c2b1e9/n/k/nk.jpg")
 bike1.photo.attach(io: img1, filename: "bike#{bike1.id}.jpg", content_type: "image/png")
@@ -89,9 +90,10 @@ bike2 = Bike.new(
   bike_type: "monocycle",
   condition: "good",
   price: 45,
-  description: Faker::Quote.matz
+  description: Faker::Quote.matz,
+  address: "38 Rue Saint-Maur, 75011 Paris"
   )
-bike2.user_id = 1
+bike2.user_id = 2
 bike2.save!
 img2 = URI.open("https://4.bp.blogspot.com/-_t3a2SFoB_0/UnpgPiQDrWI/AAAAAAAAAbI/llFEU57zzVQ/s1600/tom+anable+anables+atom.JPG")
 bike2.photo.attach(io: img2, filename: "bike#{bike2.id}.jpg", content_type: "image/png")
@@ -101,9 +103,10 @@ bike3 = Bike.new(
   bike_type: "tandem",
   condition: "good",
   price: 30,
-  description: Faker::Quote.matz
+  description: Faker::Quote.matz,
+  address: "107 Boulevard Richard-Lenoir, 75011 Paris"
   )
-bike3.user_id = 2
+bike3.user_id = 3
 bike3.save!
 img3 = URI.open("https://cdn.shopify.com/s/files/1/0019/7073/3109/collections/Tandem-bike-rental_1200x1200.jpg")
 bike3.photo.attach(io: img3, filename: "bike#{bike3.id}.jpg", content_type: "image/png")
@@ -113,9 +116,10 @@ bike4 = Bike.new(
   bike_type: "folding",
   condition: "good",
   price: 25,
-  description: Faker::Quote.matz
+  description: Faker::Quote.matz,
+  address: "6 Rue Etienne Dolet, 75020 Paris"
   )
-bike4.user_id = 2
+bike4.user_id = 3
 bike4.save!
 img4 = URI.open("https://www.neozone.org/blog/wp-content/uploads/2020/05/xiaomi-velo-electrique-002.jpg")
 bike4.photo.attach(io: img4, filename: "bike#{bike4.id}.jpg", content_type: "image/png")

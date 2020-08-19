@@ -4,6 +4,16 @@
   <div class="row justify-content-center">
     <h1>See available bikes around you</h1>
   </div>
+
+  <%#= simple_form_for :search, url: bikes_path, method: :get do |f| %>
+<!--     <div class="search-form-control form-group">
+      <input class="form-control string required" type="text" name="search[query]" id="bike-address" />
+      <button name="button" type="submit" class="btn btn-success text-white">
+        <i class="fas fa-search"></i> Search
+      </button>
+    </div> -->
+  <%# end %>
+
   <div class="row justify-content-center">
     <%= link_to 'Back to homepage', root_path, class: "btn btn-success text-white" %>
   </div>
@@ -12,8 +22,10 @@
     <% @bikes.each do |bike| %>
       <div class="col-12 col-lg-4">
         <div class="card-product">
-          <%= link_to bike_path(bike), class: 'card-link' do %>
-            <%= cl_image_tag bike.photo.key, height: 200, class: "card-img rounded" %>
+          <%= link_to bike_path(bike), class: 'stretched-link' do %>
+            <% if bike.photo.attached? %>
+              <%= cl_image_tag bike.photo.key %>
+            <% end %>
           <% end %>
           <div class="card-product-infos">
             <h2><%= bike.model %></h2>
@@ -26,25 +38,18 @@
     <% end %>
 
     <div class="col-12 col-lg-8">
-      <div id='map' style='width: 550px; height: 500px;'></div>
-      <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
-      <link
-      rel="stylesheet"
-      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css"
-      type="text/css"
-      />
-      <!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
-      <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
-      <div id="map"></div>
+      <div id="map"
+           style="width: 550px; height: 500px;"
+           data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+     </div>
 
       <script>
         mapboxgl.accessToken = 'pk.eyJ1IjoibWFmaWV3cyIsImEiOiJja2RhYjJzaTQwdjV0MnlvZG93dHJjOG5yIn0.XnI3woDvnCIOrLjHD1PBnQ';
       var map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [2.379998, 48.865127],
-      zoom: 15
+      center: [2.353341, 48.856861],
+      zoom: 12
       });
 
       map.addControl(
@@ -59,4 +64,6 @@
       </script>
     </div>
   </div>
+
+
 </div>
