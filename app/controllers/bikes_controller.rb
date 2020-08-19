@@ -9,6 +9,13 @@ class BikesController < ApplicationController
     else
       @bikes = Bike.all
     end
+    
+    #  @bikes = Bike.geocoded
+    # @markers = @bikes.map do |bike|
+    #   {
+    #     lat: bike.latitude,
+    #     lng: bike.longitude
+    #   }
   end
 
   def show
