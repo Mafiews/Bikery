@@ -4,6 +4,7 @@
   <div class="row justify-content-center">
     <h1>See available bikes around you</h1>
   </div>
+
   <div class="row justify-content-center">
     <%= link_to 'Back to homepage', root_path, class: "btn btn-success text-white" %>
   </div>
@@ -12,8 +13,10 @@
     <% @bikes.each do |bike| %>
       <div class="col-12 col-lg-4">
         <div class="card-product">
-          <%= link_to bike_path(bike), class: 'card-link' do %>
-            <%#= cl_image_tag bike.photo.key, height: 200, class: "card-img rounded" %>
+          <%= link_to bike_path(bike), class: 'stretched-link' do %>
+            <% if bike.photo.attached? %>
+              <%= cl_image_tag bike.photo.key %>
+            <% end %>
           <% end %>
           <div class="card-product-infos">
             <h2><%= bike.model %></h2>
@@ -51,4 +54,14 @@
       </script>
     </div>
   </div>
+
+  <%= simple_form_for :search, url: bikes_path, method: :get do |f| %>
+    <div class="search-form-control form-group">
+      <input class="form-control string required" type="text" name="search[query]" id="bike-address" />
+      <button name="button" type="submit" class="btn btn-success text-white">
+        <i class="fas fa-search"></i> Search
+      </button>
+    </div>
+  <% end %>
+
 </div>
