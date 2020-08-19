@@ -5,6 +5,15 @@
     <h1>See available bikes around you</h1>
   </div>
 
+  <%#= simple_form_for :search, url: bikes_path, method: :get do |f| %>
+<!--     <div class="search-form-control form-group">
+      <input class="form-control string required" type="text" name="search[query]" id="bike-address" />
+      <button name="button" type="submit" class="btn btn-success text-white">
+        <i class="fas fa-search"></i> Search
+      </button>
+    </div> -->
+  <%# end %>
+
   <div class="row justify-content-center">
     <%= link_to 'Back to homepage', root_path, class: "btn btn-success text-white" %>
   </div>
@@ -30,8 +39,9 @@
 
     <div class="col-12 col-lg-8">
       <div id="map"
-     style="width: 550px; height: 500px;"
-     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+           style="width: 550px; height: 500px;"
+           data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+     </div>
 
       <script>
         mapboxgl.accessToken = 'pk.eyJ1IjoibWFmaWV3cyIsImEiOiJja2RhYjJzaTQwdjV0MnlvZG93dHJjOG5yIn0.XnI3woDvnCIOrLjHD1PBnQ';
@@ -55,13 +65,5 @@
     </div>
   </div>
 
-  <%= simple_form_for :search, url: bikes_path, method: :get do |f| %>
-    <div class="search-form-control form-group">
-      <input class="form-control string required" type="text" name="search[query]" id="bike-address" />
-      <button name="button" type="submit" class="btn btn-success text-white">
-        <i class="fas fa-search"></i> Search
-      </button>
-    </div>
-  <% end %>
 
 </div>

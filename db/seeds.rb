@@ -91,7 +91,7 @@ bike2 = Bike.new(
   condition: "good",
   price: 45,
   description: Faker::Quote.matz,
-  address: "38 Rue Saint-Maur, 75011 Paris",
+  address: "38 Rue Saint-Maur, 75011 Paris"
   )
 bike2.user_id = 2
 bike2.save!
@@ -104,7 +104,7 @@ bike3 = Bike.new(
   condition: "good",
   price: 30,
   description: Faker::Quote.matz,
-  address: "107 Boulevard Richard-Lenoir, 75011 Paris",
+  address: "107 Boulevard Richard-Lenoir, 75011 Paris"
   )
 bike3.user_id = 3
 bike3.save!
@@ -117,7 +117,7 @@ bike4 = Bike.new(
   condition: "good",
   price: 25,
   description: Faker::Quote.matz,
-  address: "6 Rue Etienne Dolet, 75020 Paris",
+  address: "6 Rue Etienne Dolet, 75020 Paris"
   )
 bike4.user_id = 3
 bike4.save!
