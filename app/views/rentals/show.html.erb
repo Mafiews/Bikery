@@ -8,19 +8,18 @@
         <div class="card-header">
           <ul class="nav nav-tabs card-header-tabs">
             <li class="nav-item">
-              <a class="nav-link active" href="#">Your rental</a>
+              <a class="nav-link active" href="#"><i class="fas fa-edit"></i></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Edit rental</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="" tabindex="-1" aria-disabled="true">Delete rental</a>
+              <%= link_to rental_path(@rental), method: :delete, data: { confirm: "Are you sure?" }, class:"nav-link" do %>
+                <i class="fas fa-trash-alt"></i>
+              <% end %>
             </li>
           </ul>
         </div>
         <div class="row">
           <div class="col-5">
-            <%= cl_image_tag @rental.bike.photo.key, height: 200, class: "card-img rounded mb-3" %>
+            <%= cl_image_tag @rental.bike.photo.key, height: 200, class: "card-img rounded" %>
           </div>
          <div class="col-6">
           <div class="card-body">
