@@ -3,6 +3,7 @@
   <%= f.input :bike_type, collection: ["electric", "flying", "monocycle", "tandem", "folding", "race", "city", "cargo"], prompt: "Pick your bike"%>
   <%= f.input :condition, collection: ["fair", "good", "new"] %>
   <%= f.input :price, label:"Unit price per day", input_html: { min:'0'} %>
+  <%= f.input :adress%>
   <%= f.input :description%>
   <%= f.input :photo, as: :file %>
   <%= f.submit %>
