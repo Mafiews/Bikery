@@ -24,8 +24,8 @@ image0 = URI.open("https://avatars1.githubusercontent.com/u/60975663?s=460&u=0fa
 user.photo.attach(io: image0, filename: "user#{user.id}.jpg", content_type: "image/png")
 
 user1 = User.create(
-  email: Faker::Internet.email,
-  password: Faker::Beer.brand,
+  email: "test2@test.com",
+  password: "test12345",
   first_name: "Ilana",
   last_name: Faker::Name.last_name,
   address: "117 Faubourg Saint Honoré, 75008 Paris",
@@ -36,8 +36,8 @@ image1 = URI.open("https://avatars3.githubusercontent.com/u/64773479?v=4")
 user1.photo.attach(io: image1, filename: "user#{user1.id}.png", content_type: "image/png")
 
 user2 = User.create(
-  email: Faker::Internet.email,
-  password: Faker::Beer.brand,
+  email: "test3@test.com",
+  password: "test12345",
   first_name: "Matthieu",
   last_name: Faker::Name.last_name,
   address: "91 Place de la Madeleine, 75008 Paris",
@@ -67,9 +67,10 @@ bike = Bike.new(
   bike_type: "flying",
   condition: "new",
   price: 49,
-  description: Faker::Quote.matz
+  description: Faker::Quote.matz,
+  address: "16 Villa Gaudelet, Paris 75011"
   )
-bike.user_id = (1..4).to_a.sample
+bike.user_id = 3
 bike.save!
 img = URI.open("https://www.fictiontofact.com/files/media/52162/et.png")
 bike.photo.attach(io: img, filename: "bike#{bike.id}.png", content_type: "image/png")
