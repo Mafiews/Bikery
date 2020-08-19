@@ -18,18 +18,17 @@
 
         <p><i class="fas fa-bicycle"></i> <strong>Type :</strong> <%= @bike.bike_type %></p>
         <p><i class="fas fa-battery-full"></i> <strong>Condition :</strong> <%= @bike.condition %></p>
-        <p><i class="fas fa-map-marker-alt"></i> <strong> Location :</strong> <%= @bike.user.address %></p>
+        <p><i class="fas fa-map-marker-alt"></i> <strong> Location :</strong> <%= @bike.address %></p>
         <p><i class="fas fa-info-circle"></i> <strong>Description :</strong></p>
         <p><%= @bike.description %></p>
         <%= link_to 'Back', bikes_path, class: "btn btn-success text-white" %>
       </div>
 
       <div class="col-3 text-center mt-2">
-       <!--  <#% if @bike.user.photo.attached? %>
-
+        <% if @bike.photo.attached? %>
           <%= cl_image_tag @bike.user.photo.key, class: "avatar-large mb-1" %>
+        <% end %>
 
-         <#% end %> -->
         <p><%= @bike.user.first_name %> <%= @bike.user.last_name.first %>.</p>
 
         <p><i class="fas fa-euro-sign"></i> <strong><%= @bike.price %></strong> per day</p>

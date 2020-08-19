@@ -5,24 +5,18 @@
     <div class="col-8">
       <h2>Your history of rentals</h2>
       <% @rentals.each do |rental| %>
-      <div class="card text-center">
+      <div class="card text-center mt-3">
         <div class="card-header">
           <ul class="nav nav-tabs card-header-tabs">
             <li class="nav-item">
-              <a class="nav-link active" href="#">Your rental</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Edit rental</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="" tabindex="-1" aria-disabled="true">Delete rental</a>
+              <%= link_to "Rental details", rental_path(rental), class:"nav-link" %>
             </li>
           </ul>
         </div>
 
         <div class="row">
           <div class="col-5">
-            <%= cl_image_tag rental.bike.photo.key, height: 200, class: "card-img rounded mb-3" %>
+            <%= cl_image_tag rental.bike.photo.key, height: 200, class: "card-img rounded" %>
           </div>
           <div class="col-6">
             <div class="card-body">
