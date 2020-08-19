@@ -28,6 +28,7 @@
         <% if @bike.user.photo.attached? %>
           <%= cl_image_tag @bike.user.photo.key, class: "avatar-large mb-1" %>
         <% end %>
+
         <p><%= @bike.user.first_name %> <%= @bike.user.last_name.first %>.</p>
 
         <p><i class="fas fa-euro-sign"></i> <strong><%= @bike.price %></strong> per day</p>
@@ -35,7 +36,7 @@
 
         <div class="rental-days">
           <%= simple_form_for [@bike, @rental] do |f| %>
-            <%= f.input :start_date, as: :string, required: false, input_html: {class: "datepicker"} %>
+            <%= f.input :start_date, as: :string,  required: false, input_html: {class: "datepicker"} %>
             <%= f.input :end_date, as: :string, required: false, input_html: {class: "datepicker"} %>
             <%= f.submit "Book now", class: "btn btn-success text-white" %>
           <% end %>
