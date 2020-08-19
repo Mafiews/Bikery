@@ -3,7 +3,8 @@
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-8">
-
+      <h2>Your history of rentals</h2>
+      <% @rentals.each do |rental| %>
       <div class="card text-center">
         <div class="card-header">
           <ul class="nav nav-tabs card-header-tabs">
@@ -18,21 +19,20 @@
             </li>
           </ul>
         </div>
+
         <div class="row">
           <div class="col-5">
-            <%= cl_image_tag @rental.bike.photo.key, height: 200, class: "card-img rounded mb-3" %>
+            <%= cl_image_tag rental.bike.photo.key, height: 200, class: "card-img rounded mb-3" %>
           </div>
-         <div class="col-6">
-          <div class="card-body">
-            <h5 class="card-title">Congratulation! Your bike rental is confirmed. </h5>
-            <h4 class="card-text"><%= @rental.bike.model %></h4>
-            <p class="card-text">Start from <%= @rental.start_date %> to  <%= @rental.end_date %></p>
-            <p class="card-text">Total price: <%= @rental.rental_price %> €</p>
+          <div class="col-6">
+            <div class="card-body">
+              <h4 class="card-title"><%= rental.bike.model %></h4>
+              <p class="card-text">Start from <%= rental.start_date %> to  <%= rental.end_date %></p>
+              <p class="card-text">Total price: <%= rental.rental_price %> €</p>
+            </div>
           </div>
-         </div>
-        </div>
       </div>
-      <%= link_to "History of your rentals", rentals_path, class:"btn btn-outline-dark mt-5" %>
     </div>
+      <% end %>
   </div>
 </div>

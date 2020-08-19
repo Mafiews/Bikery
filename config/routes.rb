@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :bikes do
-    resources :rentals, only: [:create, :show]
+    resources :rentals, only: [:create]
   end
-  resources :rentals, only: [:destroy]
+  resources :rentals, only: [:destroy, :show, :index]
 end
