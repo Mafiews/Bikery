@@ -3,15 +3,11 @@ class BikesController < ApplicationController
   before_action :set_bike, only: [:show, :edit, :update, :destroy]
 
   def index
-
-
-    # params[:starts_at] params[:ends_at]
-    @bikes = Bike.all
-    @start_date = Date.parse params[:starts_at]
-    @end_date = Date.parse params[:ends_at]
-    @type = params[:bike_type]
-    if @type.present?
-      @bikes = Bike.where(bike_type: @type, starts_at: @start_date, ends_date: @ends_date)
+    if params[:bike_type].present?
+      @type = params[:bike_type].downcase
+      @bikes = Bike.where(bike_type: @type)
+    else
+      @bikes = Bike.all
     end
   end
 
