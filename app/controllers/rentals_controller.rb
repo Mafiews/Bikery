@@ -17,15 +17,9 @@ class RentalsController < ApplicationController
   end
 
   def review
-    @review = Review.new(review_params)
-    @review.rental = @rental
-    if @review.save
-      redirect_to rental_path(@rental)
-    else
-      render "review_form"
-    end
+    raise
   end
-  
+
   def show
     set_rental
     authorize @rental
@@ -33,6 +27,13 @@ class RentalsController < ApplicationController
 
   def index
     @rentals = Rental.where(user_id: current_user.id)
+  end
+
+  def destroy
+    set_rental
+    authorize @rental
+    @rental.destroy
+    redirect_to rentals_path
   end
 
   private
@@ -44,7 +45,7 @@ class RentalsController < ApplicationController
   def review_params
     params.require(:review).permit(:rating, :content)
   end
-    
+
   def set_rental
     @rental = Rental.find(params[:id])
   end
