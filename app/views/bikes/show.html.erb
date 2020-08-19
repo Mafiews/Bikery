@@ -5,7 +5,9 @@
 
       <div class="col-8">
         <h1><%= @bike.model %></h1>
+        <% if @bike.user.photo.attached? %>
 
+        <% end %>
         <%= cl_image_tag @bike.photo.key, height: 200, class: "rounded mb-3" %>
         <br>
 
@@ -23,15 +25,18 @@
       </div>
 
       <div class="col-3 text-center mt-2">
+       <!--  <#% if @bike.user.photo.attached? %>
 
-        <%= cl_image_tag @bike.user.photo.key, class: "avatar-large mb-1" %>
+          <%= cl_image_tag @bike.user.photo.key, class: "avatar-large mb-1" %>
+
+         <#% end %> -->
         <p><%= @bike.user.first_name %> <%= @bike.user.last_name.first %>.</p>
 
         <p><i class="fas fa-euro-sign"></i> <strong><%= @bike.price %></strong> per day</p>
         <p><i class="fas fa-calendar-alt"></i></p>
         <div class="rental-days">
           <%= simple_form_for [@bike, @rental] do |f| %>
-            <%= f.input :start_date, as: :string, required: false, input_html: {class: "datepicker"} %>
+            <%= f.input :start_date, as: :string,  required: false, input_html: {class: "datepicker"} %>
             <%= f.input :end_date, as: :string, required: false, input_html: {class: "datepicker"} %>
             <%= f.submit lable:"Book now" %>
           <% end %>
