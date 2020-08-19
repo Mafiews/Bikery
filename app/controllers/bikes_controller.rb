@@ -3,12 +3,12 @@ class BikesController < ApplicationController
   before_action :set_bike, only: [:show, :edit, :update, :destroy]
 
   def index
-    if params[:bike_type].present?
+    if params[:bike_type].present? && (params[:bike_type] != "All bikes")
       @type = params[:bike_type].downcase
-      @bikes = Bike.geocoded.select(|bike| bike.bike_type == @type
+      @bikes = Bike.geocoded.select { |bike| bike.bike_type == @type }
     else
       @bikes = Bike.geocoded
-    end  
+    end
     @markers = @bikes.map do |bike|
       {
         lat: bike.latitude,
