@@ -12,12 +12,13 @@ class BikesController < ApplicationController
     #   @bikes = Bike.where(bike_type: @type, starts_at: @start_date, ends_date: @ends_date)
     # end
 
-    #  @bikes = Bike.geocoded
-    # @markers = @bikes.map do |bike|
-    #   {
-    #     lat: bike.latitude,
-    #     lng: bike.longitude
-    #   }
+    @bikes = Bike.geocoded
+    @markers = @bikes.map do |bike|
+      {
+        lat: bike.latitude,
+        lng: bike.longitude
+      }
+    end
   end
 
   def show
