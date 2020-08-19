@@ -9,6 +9,8 @@
 require 'faker'
 require 'open-uri'
 
+puts 'Loading...'
+
 user = User.create(
   email: "test@test.com",
   password: "test12345",
