@@ -18,12 +18,11 @@
     <%= link_to 'Back to homepage', root_path, class: "btn btn-success text-white" %>
   </div>
 
-  <div class="">
     <div class="row flex-row justify-content-between">
       <div class="col-12 col-lg-4">
         <% @bikes.each do |bike| %>
           <div class="card-product">
-            <%= link_to bike_path(bike), class: 'stretched-link' do %>
+            <%= link_to bike_path(bike) do %>
               <% if bike.photo.attached? %>
                 <%= cl_image_tag bike.photo.key %>
               <% end %>
@@ -38,7 +37,7 @@
         <% end %>
       </div>
 
-      <div class="col-12 col-lg-8">
+      <div class="col-12 col-lg-8 mt-3">
         <div id="map"
              style="width: 550px; height: 500px;"
              data-markers="<%= @markers.to_json %>"
@@ -66,7 +65,5 @@
         </script>
       </div>
     </div>
-  </div>
-
 
 </div>
