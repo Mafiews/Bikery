@@ -24,7 +24,9 @@
 
       <div class="col-3 text-center mt-2">
 
-        <%= cl_image_tag @bike.user.photo.key, class: "avatar-large mb-1" %>
+        <% if @bike.photo.attached? %>
+          <%= cl_image_tag @bike.user.photo.key, class: "avatar-large mb-1" %>
+        <% end %>
         <p><%= @bike.user.first_name %> <%= @bike.user.last_name.first %>.</p>
 
         <p><i class="fas fa-euro-sign"></i> <strong><%= @bike.price %></strong> per day</p>
