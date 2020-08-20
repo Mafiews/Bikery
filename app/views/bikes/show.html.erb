@@ -18,28 +18,29 @@
         <p><i class="fas fa-map-marker-alt"></i> <strong> Location :</strong> <%= @bike.address %></p>
         <p><i class="fas fa-info-circle"></i> <strong>Description :</strong></p>
         <p><%= @bike.description %></p>
-        <%= link_to 'Back', bikes_path, class: "btn btn-success text-white" %>
+        <%= link_to 'Back', bikes_path, class: "btn btn-outline-dark", id: "back-index" %>
       </div>
 
-      <div class="col-3 text-center mt-4">
-
-        <% if @bike.user.photo.attached? %>
-          <%= cl_image_tag @bike.user.photo.key, class: "avatar-large mb-1" %>
-        <% end %>
-
-        <p><%= @bike.user.first_name %> <%= @bike.user.last_name.first %>.</p>
-
-        <p><i class="fas fa-euro-sign"></i> <strong><%= @bike.price %></strong> per day</p>
-        <p><i class="fas fa-calendar-alt"></i></p>
-
-        <div class="rental-days">
-          <%= simple_form_for [@bike, @rental] do |f| %>
-            <%= f.input :start_date, as: :string,  required: false, input_html: {class: "datepicker"} %>
-            <%= f.input :end_date, as: :string, required: false, input_html: {class: "datepicker"} %>
-            <%= f.submit "Book now", class: "btn btn-success text-white" %>
+        <div class="col-3 text-center mt-4" id="book">
+          <% if @bike.user.photo.attached? %>
+            <%= cl_image_tag @bike.user.photo.key, class: "avatar-large mb-1" %>
           <% end %>
-        </div>
-        <br>
+
+          <p><%= @bike.user.first_name %> <%= @bike.user.last_name.first %>.</p>
+
+          <p><i class="fas fa-euro-sign"></i> <strong><%= @bike.price %></strong> per day</p>
+          <p><i class="fas fa-calendar-alt"></i></p>
+
+          <div class="rental-days">
+            <%= simple_form_for [@bike, @rental] do |f| %>
+              <%= f.input :start_date, as: :string,  required: false, input_html: {class: "datepicker" } %>
+              <%= f.input :end_date, as: :string, required: false, input_html: {class: "datepicker"} %>
+              <%= f.submit "Book now", class: "btn btn-success text-white" %>
+            <% end %>
+          </div>
+          <br>
+        </table>
+
 <!--         <p>Price x da</p>
         <p>Total : €</p> -->
       </div>
