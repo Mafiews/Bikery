@@ -5,5 +5,7 @@ Rails.application.routes.draw do
   resources :bikes do
     resources :rentals, only: [:create]
   end
-  resources :rentals, only: [:destroy, :show, :index]
+  resources :rentals, only: [:destroy, :show, :index, :edit, :update]
+  get 'dashboard', to: 'pages#dashboard'
+  post 'rentals/:id', to: 'rentals#update_confirmation', as: "rental_update_confirmation"
 end
