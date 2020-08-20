@@ -5,8 +5,10 @@ const mapElement = document.getElementById('map');
 const buildMap = () => {
   mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
   return new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v11'
+  container: 'map',
+  style: 'mapbox://styles/mapbox/streets-v11',
+  center: [2.353341, 48.856861],
+  zoom: 12
   });
 };
 

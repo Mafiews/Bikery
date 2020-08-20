@@ -20,6 +20,7 @@ class BikesController < ApplicationController
         lat: bike.latitude,
         lng: bike.longitude,
         image_url: helpers.asset_url('markers.png')
+        infoWindow: render_to_string(partial: "info_window", locals: { bike: bike })
       }
     end
   end
