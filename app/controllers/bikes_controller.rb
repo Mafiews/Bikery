@@ -3,24 +3,63 @@ class BikesController < ApplicationController
   before_action :set_bike, only: [:show, :edit, :update, :destroy]
 
   def index
-    if params[:bike_type].present? && (params[:bike_type] != "All bikes")
+    @address = params[:address]
+    # @bikes = Bike.where("")
+    if params[:bike_type].present? && (params[:bike_type] != "All bikes") && (params[:address].present?)
+      @type = params[:bike_type].downcase
+      @bikes = Bike.near(@address, 5).select { |bike| bike.bike_type == @type }
+    elsif params[:bike_type].present? && (params[:bike_type] != "All bikes")
       @type = params[:bike_type].downcase
       @bikes = Bike.geocoded.select { |bike| bike.bike_type == @type }
+    elsif params[:address].present?
+      @bikes = Bike.near(@address, 5)
+
     else
       @bikes = Bike.geocoded
     end
     @markers = @bikes.map do |bike|
       {
         lat: bike.latitude,
-        lng: bike.longitude
+        lng: bike.longitude,
+        image_url: helpers.asset_url('markers.png'),
+        infoWindow: render_to_string(partial: "info_window", locals: { bike: bike })
       }
     end
+    if params[:address] != ""
+      location = Geocoder.search(params[:address])
+      @lat = location[0].latitude
+      @lng = location[0].longitude
+      @marker = {
+        lat: @lat,
+        lng: @lng,
+        image_url: helpers.asset_url('my-marker.png')
+
+      }
+
+    @markers << @marker
+
   end
+end
+
 
   def show
     set_bike
     authorize @bike
     @rental = Rental.new
+    unless @bike.rentals.nil?
+      @rentals = @bike.rentals
+      @ratings = 0
+      @ratings_sum = 0
+      @rentals.each do |rental|
+        unless rental.rating.nil?
+          @ratings += 1
+          @ratings_sum += rental.rating
+          @renter = rental.user.first_name
+        end
+      end
+      @ratings
+      @ratings_sum
+    end
   end
 
   def edit
