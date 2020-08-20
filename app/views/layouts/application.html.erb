@@ -28,8 +28,13 @@
 
     <div class="content-wrapper">
       <%= yield %>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+      <div class="flash flash-success alert alert-dismissible fade show" role="alert">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+        <a data-dismiss="alert" aria-label="Close">
+          <i class="fas fa-times"></i>
+        </a>
+      </div>
     </div>
 
     <%= render 'shared/footer' %>
