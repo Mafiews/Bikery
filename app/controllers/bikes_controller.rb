@@ -46,6 +46,20 @@ end
     set_bike
     authorize @bike
     @rental = Rental.new
+    unless @bike.rentals.nil?
+      @rentals = @bike.rentals
+      @ratings = 0
+      @ratings_sum = 0
+      @rentals.each do |rental|
+        unless rental.rating.nil?
+          @ratings += 1
+          @ratings_sum += rental.rating
+          @renter = rental.user.first_name
+        end
+      end
+      @ratings
+      @ratings_sum
+    end
   end
 
   def edit
