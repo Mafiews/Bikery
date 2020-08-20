@@ -1,9 +1,6 @@
-<%= render '/shared/navbar' %>
-
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-8">
-
       <div class="card text-center">
         <div class="card-header">
           <ul class="nav nav-tabs card-header-tabs">
@@ -21,13 +18,13 @@
           <div class="col-5">
             <%= cl_image_tag @rental.bike.photo.key, height: 200, class: "card-img rounded" %>
           </div>
-         <div class="col-6">
-          <div class="card-body">
-            <h5 class="card-title">Congratulation! Your bike rental is confirmed. </h5>
-            <h4 class="card-text"><%= @rental.bike.model %></h4>
-            <p class="card-text">Start from <%= @rental.start_date %> to  <%= @rental.end_date %></p>
-            <p class="card-text">Total price: <%= @rental.rental_price %> €</p>
-          </div>
+          <div class="col-6">
+            <div class="card-body">
+              <h5 class="card-title">Congratulation! Your bike rental is confirmed. </h5>
+              <h4 class="card-text"><%= @rental.bike.model %></h4>
+              <p class="card-text">Start from <%= @rental.start_date %> to  <%= @rental.end_date %></p>
+              <p class="card-text">Total price: <%= @rental.rental_price %> €</p>
+            </div>
          </div>
         </div>
       </div>
@@ -35,3 +32,8 @@
     </div>
   </div>
 </div>
+
+
+
+
+
