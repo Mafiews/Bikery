@@ -18,7 +18,16 @@
         <p><i class="fas fa-map-marker-alt"></i> <strong> Location :</strong> <%= @bike.address %></p>
         <p><i class="fas fa-info-circle"></i> <strong>Description :</strong></p>
         <p><%= @bike.description %></p>
-        <%= link_to 'Back', bikes_path, class: "btn btn-outline-dark", id: "back-index" %>
+        <% if @rentals.nil? %>
+        <% else %>
+          <p><i class="fas fa-star"></i> <%= @ratings_sum.div(@ratings) %> <em>(<%= @ratings %> <%= @ratings = 1 ? "review" : "reviews" %>)</em></p>
+          <% @rentals.each do |rental| %>
+            <% if rental.content.nil? == false %>
+              <p><em><%= rental.content %> <span class="text-muted">(<%= @renter %>, <%= rental.end_date %>)</span></em></p>
+            <% end %>
+          <% end %>
+        <% end %>
+        <%= link_to 'Back', bikes_path, class: "btn btn-outline-dark my-3", id: "back-index" %>
       </div>
 
         <div class="col-3 text-center mt-4" id="book">
@@ -39,9 +48,8 @@
             <% end %>
           </div>
           <br>
-        </table>
 
-<!--         <p>Price x da</p>
+    <!--<p>Price x da</p>
         <p>Total : €</p> -->
       </div>
 

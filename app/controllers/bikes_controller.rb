@@ -19,7 +19,7 @@ class BikesController < ApplicationController
       {
         lat: bike.latitude,
         lng: bike.longitude,
-        image_url: helpers.asset_url('markers.png')
+        image_url: helpers.asset_url('markers.png'),
         infoWindow: render_to_string(partial: "info_window", locals: { bike: bike })
       }
     end
@@ -29,6 +29,20 @@ class BikesController < ApplicationController
     set_bike
     authorize @bike
     @rental = Rental.new
+    unless @bike.rentals.nil?
+      @rentals = @bike.rentals
+      @ratings = 0
+      @ratings_sum = 0
+      @rentals.each do |rental|
+        unless rental.rating.nil?
+          @ratings += 1
+          @ratings_sum += rental.rating
+          @renter = rental.user.first_name
+        end
+      end
+      @ratings
+      @ratings_sum
+    end
   end
 
   def edit
