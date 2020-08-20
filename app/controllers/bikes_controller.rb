@@ -3,16 +3,23 @@ class BikesController < ApplicationController
   before_action :set_bike, only: [:show, :edit, :update, :destroy]
 
   def index
-    if params[:bike_type].present? && (params[:bike_type] != "All bikes")
+    if params[:bike_type].present? && (params[:bike_type] != "All bikes") && (params[:address].present?)
+      @type = params[:bike_type].downcase
+      @address = params[:address]
+      @bikes = Bike.near(@address, 5).select { |bike| bike.bike_type == @type }
+    elsif params[:bike_type].present? && (params[:bike_type] != "All bikes")
       @type = params[:bike_type].downcase
       @bikes = Bike.geocoded.select { |bike| bike.bike_type == @type }
+    elsif (params[:address].present?)
+      @bikes = Bike.near(@address, 5)
     else
       @bikes = Bike.geocoded
     end
     @markers = @bikes.map do |bike|
       {
         lat: bike.latitude,
-        lng: bike.longitude
+        lng: bike.longitude,
+        image_url: helpers.asset_url('markers.png')
       }
     end
   end

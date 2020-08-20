@@ -20,8 +20,8 @@
           <%= form_tag bikes_path, method: "get" do %>
             <%= select_tag 'bike_type', options_for_select(['All bikes','Electric', 'Flying', 'Monocycle', 'Tandem', 'Folding', 'Race', 'City', 'Cargo']), class: 'form-control' %>
 
-<!--             <#%= text_field_tag :starts_at, "", required: false, class: "datepicker ml-3", label: false, placeholder: "start at" %>
-            <#%= text_field_tag :ends_at, "", required: false, class: "datepicker ml-3", label: false, placeholder: "end at" %> -->
+            <%= text_field_tag :address, "", required: false, class: " ml-3", label: false, placeholder: "Address" %>
+
             <%= submit_tag "Go", class: "btn btn-info" %>
           <% end %>
 
