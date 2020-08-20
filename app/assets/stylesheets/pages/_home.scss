@@ -1,8 +1,8 @@
 // Specific CSS for your home-page
 .title-site {
   position: absolute;
-  top: -160px;
-  left: 100px;
+  top: -200px;
+  left: 70px;
   p {
     font-size: 22px;
     color: lightgray;
@@ -13,11 +13,16 @@
 
 .banner {
   position: relative;
+  background-size: cover;
+  background-position: top;
+  background-repeat: round;
+  background-blend-mode: saturation;
+  padding: 250px 0;
 }
 
 .rental-form {
   position: relative;
-  left: 150px;
+  margin-left: 150px;
 }
 
 .form-inline {
