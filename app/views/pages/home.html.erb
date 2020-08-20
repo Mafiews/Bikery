@@ -1,22 +1,22 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('https://www.denverbike.com/upload/734/cms/516769/fr/22850/bannerroute66denver.jpg');">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1544994130-e784812e3f07?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3300&q=80');">
   <div class="row">
     <div class="col-sm-6">
       <div class="title-site">
-        <h1> Bikery </h1>
-        <p>Do something for the 🌍 and your 👛 - rent your 🚲 !</p>
+        <h1>Rent your Bike</h1>
+        <p>Do something good for the <i class="fas fa-globe-americas"></i> and your <i class="fas fa-wallet"></i></p>
       </div>
     </div>
     <div class="col-sm-6">
-      <div class=" style=">
-        <h2 class="title">Choose your rental</h2>
+      <div class="rental-form">
+        <h2 class="title text-white">Choose your bike</h2>
         <div class="form-inline">
 
           <%= form_tag bikes_path, method: "get" do %>
             <%= select_tag 'bike_type', options_for_select(['All bikes','Electric', 'Flying', 'Monocycle', 'Tandem', 'Folding', 'Race', 'City', 'Cargo']), class: 'form-control' %>
 
-<!--             <#%= text_field_tag :starts_at, "", required: false, class: "datepicker ml-3", label: false, placeholder: "start at" %>
-            <#%= text_field_tag :ends_at, "", required: false, class: "datepicker ml-3", label: false, placeholder: "end at" %> -->
-            <%= submit_tag "Go", class: "btn btn-info" %>
+            <%#= text_field_tag :starts_at, "", required: false, class: "datepicker ml-3", label: false, placeholder: "start at" %>
+            <%#= text_field_tag :ends_at, "", required: false, class: "datepicker ml-3", label: false, placeholder: "end at" %> -->
+            <%= submit_tag "Go", class: "btn btn-success text-white" %>
           <% end %>
         </div>
       </div>
