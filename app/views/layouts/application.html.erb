@@ -26,15 +26,10 @@
   <body>
     <%= render 'shared/navbar' %>
 
+
     <div class="content-wrapper">
       <%= yield %>
-      <div class="flash flash-success alert alert-dismissible fade show" role="alert">
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
-        <a data-dismiss="alert" aria-label="Close">
-          <i class="fas fa-times"></i>
-        </a>
-      </div>
+      <%= render 'shared/flashes' %>
     </div>
 
     <%= render 'shared/footer' %>
