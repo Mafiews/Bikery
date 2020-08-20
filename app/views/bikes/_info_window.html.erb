@@ -1,0 +1,10 @@
+<% if bike.photo.attached? %>
+  <%= cl_image_tag bike.photo.key, width: 200, class: 'mb-2' %>
+<% end %>
+<h3><%= bike.model %></h3>
+<i class="fas fa-map-marker-alt px-2"></i> <%= bike.address %>
+<br>
+<i class="fas fa-bicycle"></i> <%= bike.bike_type %>
+<i class="fas fa-battery-full pl-2"></i> <%= bike.condition %>
+<br>
+<i class="fas fa-euro-sign"></i> <%= bike.price %> per day
