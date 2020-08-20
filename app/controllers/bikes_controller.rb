@@ -3,15 +3,17 @@ class BikesController < ApplicationController
   before_action :set_bike, only: [:show, :edit, :update, :destroy]
 
   def index
+    @address = params[:address]
+    # @bikes = Bike.where("")
     if params[:bike_type].present? && (params[:bike_type] != "All bikes") && (params[:address].present?)
       @type = params[:bike_type].downcase
-      @address = params[:address]
       @bikes = Bike.near(@address, 5).select { |bike| bike.bike_type == @type }
     elsif params[:bike_type].present? && (params[:bike_type] != "All bikes")
       @type = params[:bike_type].downcase
       @bikes = Bike.geocoded.select { |bike| bike.bike_type == @type }
-    elsif (params[:address].present?)
+    elsif params[:address].present?
       @bikes = Bike.near(@address, 5)
+
     else
       @bikes = Bike.geocoded
     end
@@ -19,11 +21,26 @@ class BikesController < ApplicationController
       {
         lat: bike.latitude,
         lng: bike.longitude,
-        image_url: helpers.asset_url('markers.png')
+        image_url: helpers.asset_url('markers.png'),
         infoWindow: render_to_string(partial: "info_window", locals: { bike: bike })
       }
     end
+    if params[:address] != ""
+      location = Geocoder.search(params[:address])
+      @lat = location[0].latitude
+      @lng = location[0].longitude
+      @marker = {
+        lat: @lat,
+        lng: @lng,
+        image_url: helpers.asset_url('my-marker.png')
+
+      }
+
+    @markers << @marker
+
   end
+end
+
 
   def show
     set_bike
