@@ -16,4 +16,12 @@ class RentalPolicy < ApplicationPolicy
   def destroy?
     @record.user == @user
   end
+
+  def update?
+    @record.user == @user
+  end
+
+  def update_confirmation?
+    @record.bike.user == @user
+  end
 end

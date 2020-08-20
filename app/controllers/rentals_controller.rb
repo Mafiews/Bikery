@@ -29,6 +29,28 @@ class RentalsController < ApplicationController
     @rentals = Rental.where(user_id: current_user.id)
   end
 
+  def edit
+    set_rental
+    authorize @rental
+  end
+
+  def update
+    set_rental
+    start_date = Date.parse rental_params[:start_date]
+    end_date = Date.parse rental_params[:end_date]
+    sum_days = (end_date - start_date).to_i
+    sum_price = sum_days * @rental.bike.price
+    authorize @rental
+    @rental.update( start_date: start_date, end_date: end_date, rental_price:sum_price)
+    redirect_to rentals_path
+  end
+
+  def update_confirmation
+    set_rental
+    authorize @rental
+    @rental.update(confirmation: params[:validated])
+  end
+
   def destroy
     set_rental
     authorize @rental
@@ -37,6 +59,9 @@ class RentalsController < ApplicationController
   end
 
   private
+  def confirmation_params
+    params.require().permit(:confirmation)
+  end
 
   def rental_params
     params.require(:rental).permit(:start_date, :end_date)
