@@ -12,7 +12,7 @@
 }
 
 #home-keyword {
-  color: #3abf7d;
+  color: #f8b400;
 }
 
 .rental-form {
@@ -20,15 +20,6 @@
   bottom: 65px;
   left: 250px;
 }
-
-// .banner {
-//   position: relative;
-//   background-size: cover;
-//   background-position: top;
-//   background-repeat: round;
-//   background-blend-mode: saturation;
-//   padding: 250px 0;
-// }
 
 // .form-inline {
 //   padding-left: 50px;
@@ -39,5 +30,9 @@
 //   }
 
 a {
+  text-decoration: none;
+}
+
+a:hover {
   text-decoration: none;
 }
