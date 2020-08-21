@@ -28,15 +28,17 @@
         </div>
       </div>
 
-      <% if @rental.content.nil? && @rental.rating.nil? %>
-        <div class="mt-3" style="width: 250px" >
-          <%= render 'review_form' %>
-        </div>
-      <% else %>
-          <p>My review : </p>
-          <div class="card mt-2">
-            <p><%= @rental.rating %> <i class="fas fa-star"></i> - <%= @rental.content %> (<%= @rental.updated_at %>)</p>
+      <% unless @rental.end_date > DateTime.now %>
+        <% if @rental.content.nil? && @rental.rating.nil? %>
+          <div class="mt-3" style="width: 250px" >
+            <%= render 'review_form' %>
           </div>
+        <% else %>
+            <p>My review : </p>
+            <div class="card mt-2">
+              <p><%= @rental.rating %> <i class="fas fa-star"></i> - <%= @rental.content %> (<%= @rental.updated_at %>)</p>
+            </div>
+        <% end %>
       <% end %>
 
       <%= link_to "Back to your Dashboard", dashboard_path, class:"btn btn-outline-dark mt-5" %>
