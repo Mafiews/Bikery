@@ -5,30 +5,29 @@
         <div class="card-header">
           <ul class="nav nav-tabs card-header-tabs">
             <li class="nav-item">
-              <a class="nav-link active" href="#"><i class="fas fa-edit"></i></a>
+              <%= link_to 'Edit rental', edit_rental_path(@rental), class:"nav-link" %>
             </li>
             <li class="nav-item">
-              <%= link_to rental_path(@rental), method: :delete, data: { confirm: "Are you sure?" }, class:"nav-link" do %>
-                <i class="fas fa-trash-alt"></i>
-              <% end %>
+              <%= link_to 'Delete rental', rental_path(@rental), method: :delete, data: { confirm: "Are you sure?" }, class:"nav-link" %>
             </li>
           </ul>
         </div>
         <div class="row">
-          <div class="col-5">
+          <div class="col-6">
             <%= cl_image_tag @rental.bike.photo.key, height: 200, class: "card-img rounded" %>
           </div>
-          <div class="col-6">
-            <div class="card-body">
-              <h5 class="card-title">Congratulation! Your bike rental is confirmed. </h5>
-              <h4 class="card-text"><%= @rental.bike.model %></h4>
-              <p class="card-text">Start from <%= @rental.start_date %> to  <%= @rental.end_date %></p>
-              <p class="card-text">Total price: <%= @rental.rental_price %> €</p>
-            </div>
+         <div class="col-6">
+          <div class="card-body">
+            <h5 class="card-title">Thank you for your booking ! The bike owner will confirm soon... </h5>
+            <h4 class="card-text"><%= @rental.bike.model %></h4>
+            <p class="card-text">Start from <%= @rental.start_date %> to  <%= @rental.end_date %></p>
+            <p class="card-text">Unit price: <%= @rental.bike.price %></p>
+            <p class="card-text">Total price: <%= @rental.rental_price %> €</p>
+          </div>
          </div>
         </div>
       </div>
-      <%= link_to "History of your rentals", rentals_path, class:"btn btn-outline-dark mt-5" %>
+      <%= link_to "Back to your Dashboard", dashboard_path, class:"btn btn-outline-dark mt-5" %>
     </div>
   </div>
 </div>
