@@ -1,17 +1,26 @@
 <div class="container">
   <div class="row justify-content-center">
       <div class="col-4 mt-4">
-        <div class="card" style="width: 18rem;">
+        <div class="card user-info">
           <% if current_user.photo.attached? %>
-            <%= cl_image_tag current_user.photo.key, class: "avatar-large mb-1" %>
+            <%= cl_image_tag current_user.photo.key, class: "avatar-large user-photo m-3" %>
           <% else %>
-            <%= image_tag "https://oozou.com/assets/placeholder-e61f8e40396b6f3d78281bfa3b2d5ca202616f0e3f9931d451a49d4c2ddfcfea.jpg", alt: "empty-avatar", class: "avatar mb-1" %>
+            <%= image_tag "https://oozou.com/assets/placeholder-e61f8e40396b6f3d78281bfa3b2d5ca202616f0e3f9931d451a49d4c2ddfcfea.jpg", alt: "empty-avatar", class: "avatar user-photo m-3" %>
           <% end %>
           <div class="card-body">
             <h5 class="card-title"><%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %></h5>
             <p class="card-text"><%= current_user.address %></p>
             <p class="card-text"><i class="fas fa-window-restore"></i> Total <%= pluralize current_user.rentals.size,"rental" %></p>
             <p class="card-text"><i class="fas fa-bicycle"></i> Your owned <%= pluralize current_user.bikes.size, "bike"  %></p>
+            <ul>
+              <% @my_bikes.each do |bike| %>
+                <li>
+                  <%= link_to bike_path(bike) do %>
+                    <%= bike.model %> : has <%= pluralize bike.rentals.size, "review" %>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
           </div>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">
@@ -24,20 +33,33 @@
         </div>
       </div>
 
-      <div class="col-6 mt-4">
-        <div class="" style="height:250px; width: 36rem;">
+      <div class="col-8 mt-4">
+        <div class="" style="height:300px;">
           <h3>My booking history</h3>
+
           <% @my_rentals.each do |my_rental| %>
           <div class="notification">
-            <% if my_rental.bike.photo.attached? %>
-              <%= cl_image_tag my_rental.bike.photo.key, class: "avatar-large mb-1" %>
+            <%= link_to rental_path(my_rental) do %>
+              <% if my_rental.bike.photo.attached? %>
+                <%= cl_image_tag my_rental.bike.photo.key, width: 110 %>
+              <% end %>
             <% end %>
-
             <div class="notification-content">
               <p><small><%= my_rental.start_date %> to <%= my_rental.end_date %></small></p>
+              <p class='px-2'><strong><%= my_rental.bike.model %></strong></p>
               <p class="d-inline p-2"><i class="fas fa-bicycle"></i> <%= my_rental.bike.bike_type %></p>
               <p class="d-inline p-2"><i class="fas fa-battery-full"></i> <%= my_rental.bike.condition %></p>
               <p class="d-inline p-2"><i class="fas fa-euro-sign"></i> <%= my_rental.rental_price %></p>
+              <p class="p-2">
+                Status:
+                <% if my_rental.confirmation.nil? %>
+                  Pending...
+                <% elsif my_rental.confirmation == true%>
+                  Accepted
+                <% else %>
+                  Denied
+                <% end %>
+              </p>
             </div>
 
             <div class="notification-actions">
@@ -52,9 +74,9 @@
           <% end %>
         </div>
 
-        <div class="" style="height:250px; width: 36rem;">
+        <div class="" style="height:250px;">
         <% if @ask_rentals.length >0 %>
-          <h3>Waiting request</h3>
+          <h3>My list of requests</h3>
           <% @ask_rentals.each do |r_request| %>
             <div class="notification">
               <% if r_request.user.photo.attached? %>
@@ -64,16 +86,28 @@
               <% end %>
               <div class="notification-content">
                 <p><small><%= r_request.start_date %> to <%= r_request.end_date %></small></p>
+                <p class='px-2'><strong><%= r_request.bike.model %></strong></p>
                 <p class="d-inline p-2"><i class="fas fa-bicycle"></i> <%= r_request.bike.bike_type %></p>
                 <p class="d-inline p-2"><i class="fas fa-battery-full"></i> <%= r_request.bike.condition %></p>
                 <p class="d-inline p-2"><i class="fas fa-euro-sign"></i> <%= r_request.rental_price %></p>
+                <p class="p-2">
+                Status:
+                  <% if r_request.confirmation.nil? %>
+                    Pending...
+                  <% elsif r_request.confirmation == true%>
+                    Accepted
+                  <% else %>
+                    Denied
+                  <% end %>
+                </p>
               </div>
 
+              <% if r_request.confirmation.nil? %>
               <div class=“notification-actions”>
-                <%= button_to "Accept", rental_update_confirmation_path(r_request, validated:'true'), method: :post, class:"d.inline btn btn-outline-success"  %>
-                <%= button_to "Reject ", rental_update_confirmation_path(r_request, validated:'false'), method: :post, class:"d.inline btn btn-outline-danger" %>
+                <%= button_to "Accept", rental_update_confirmation_path(r_request, validated:'true'), method: :post, class:"mb-3 btn btn-outline-success"  %>
+                <%= button_to "Reject ", rental_update_confirmation_path(r_request, validated:'false'), method: :post, class:"btn btn-outline-danger" %>
               </div>
-
+              <% end %>
             </div>
           <% end %>
         <% end %>
