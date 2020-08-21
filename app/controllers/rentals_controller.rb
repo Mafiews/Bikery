@@ -63,7 +63,7 @@ class RentalsController < ApplicationController
     set_rental
     authorize @rental
     @rental.destroy
-    redirect_to rentals_path
+    redirect_to dashboard_path
   end
 
   private
