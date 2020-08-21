@@ -21,12 +21,24 @@
             <h5 class="card-title">Thank you for your booking ! The bike owner will confirm soon... </h5>
             <h4 class="card-text"><%= @rental.bike.model %></h4>
             <p class="card-text">Start from <%= @rental.start_date %> to  <%= @rental.end_date %></p>
-            <p class="card-text">Unit price: <%= @rental.bike.price %></p>
+            <p class="card-text">Unit price: <%= @rental.bike.price %> €</p>
             <p class="card-text">Total price: <%= @rental.rental_price %> €</p>
           </div>
          </div>
         </div>
       </div>
+
+      <% if @rental.content.nil? && @rental.rating.nil? %>
+        <div class="mt-3" style="width: 250px" >
+          <%= render 'review_form' %>
+        </div>
+      <% else %>
+          <p>My review : </p>
+          <div class="card mt-2">
+            <p><%= @rental.rating %> <i class="fas fa-star"></i> - <%= @rental.content %> (<%= @rental.updated_at %>)</p>
+          </div>
+      <% end %>
+
       <%= link_to "Back to your Dashboard", dashboard_path, class:"btn btn-outline-dark mt-5" %>
     </div>
   </div>
