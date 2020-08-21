@@ -34,7 +34,7 @@
       </div>
 
       <div class="col-8 mt-4">
-        <div class="" style="height:300px;">
+        <div class="my-rentals">
 
           <h3>My booking history</h3>
 
@@ -71,15 +71,17 @@
               <%= link_to rental_path(my_rental), method: :delete, data: { confirm: "Are you sure?" } do %>
                 Delete <i class="far fa-trash-alt"></i>
               <% end %>
-              <%= link_to rental_path(my_rental) do%>
-                Review <i class="fas fa-star"></i>
+              <% unless my_rental.end_date > DateTime.now %>
+                <%= link_to rental_path(my_rental) do%>
+                  Review <i class="fas fa-star"></i>
+                <% end %>
               <% end %>
             </div>
           </div>
           <% end %>
         </div>
 
-        <div class="" style="height:250px;">
+        <div class="my-requests">
         <% if @ask_rentals.length >0 %>
           <h3>My list of requests</h3>
           <% @ask_rentals.each do |r_request| %>
