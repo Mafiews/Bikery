@@ -1,23 +1,22 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1544994130-e784812e3f07?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3300&q=80');">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url('https://res.cloudinary.com/kally-b/image/upload/v1597957416/banner-cropped_s7a4a4.png');">
   <div class="row">
     <div class="col-sm-6">
       <div class="title-site">
-        <h1>Rent your Bike</h1>
-        <p>Do something good for the <i class="fas fa-globe-americas"></i> and your <i class="fas fa-wallet"></i></p>
+        <h1>Do something good</i></h1>
+        <p>for the <span id="home-keyword">Planet <i class="fas fa-globe-americas"></i>
+        </span> & your <span id="home-keyword">Wallet <i class="fas fa-wallet"></i></span></p>
       </div>
     </div>
-    <div class="col-sm-6">
-      <div class="rental-form">
-        <h2 class="title text-white">Choose your bike</h2>
-        <div class="form-inline">
 
+      <div class="rental-form">
+        <h2 class="title text-white">Rent your <span id="home-keyword">bike</span> now :</h2>
+        <div class="form-inline">
           <%= form_tag bikes_path, method: "get" do %>
-            <%= select_tag 'bike_type', options_for_select(['All bikes','Electric', 'Flying', 'Monocycle', 'Tandem', 'Folding', 'Race', 'City', 'Cargo']), class: 'form-control' %>
-            <%= text_field_tag :address, "", required: false, class: " ml-3", label: false, placeholder: "Address" %>
-            <%= submit_tag "Go", class: "btn btn-success text-white" %>
+            <%= text_field_tag :address, "", required: false, id: "bike-address", label: false, placeholder: "Type your address" %>
+            <%= select_tag 'bike_type', options_for_select(['All bikes','Electric', 'Flying', 'Monocycle', 'Tandem', 'Folding', 'Race', 'City', 'Cargo']), class: 'form-control bike-address mt-3' %>
+            <%= submit_tag "Go", class: "btn btn-success text-white ml-2 mt-3" %>
           <% end %>
         </div>
       </div>
-    </div>
   </div>
 </div>
