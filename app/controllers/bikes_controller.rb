@@ -25,22 +25,20 @@ class BikesController < ApplicationController
         infoWindow: render_to_string(partial: "info_window", locals: { bike: bike })
       }
     end
-    # if params[:address] != ""
-    #   location = Geocoder.search(params[:address])
-    #   @lat = location[0].latitude
-    #   @lng = location[0].longitude
-    #   @marker = {
-    #     lat: @lat,
-    #     lng: @lng,
-    #     image_url: helpers.asset_url('my-marker.png')
 
-    #   }
-
-    # @markers << @marker
+    unless params[:address].nil? || params[:address] == ''
+      location = Geocoder.search(params[:address])
+      @lat = location[0].latitude
+      @lng = location[0].longitude
+      @marker = {
+        lat: @lat,
+        lng: @lng,
+        image_url: helpers.asset_url('my-marker.png')
+      }
+      @markers << @marker
+    end
 
   end
-
-
 
   def show
     set_bike

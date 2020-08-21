@@ -1,38 +1,42 @@
 // Specific CSS for your home-page
 .title-site {
   position: absolute;
-  top: -200px;
-  left: 70px;
+  top: -230px;
+  left: 80px;
   p {
-    font-size: 22px;
+    font-size: 24px;
     color: lightgray;
     opacity: 2.7;
     text-shadow: 2px 4px 16px rgba(0, 0, 0, 0.2);
   }
 }
 
-.banner {
-  position: relative;
-  background-size: cover;
-  background-position: top;
-  background-repeat: round;
-  background-blend-mode: saturation;
-  padding: 250px 0;
+#home-keyword {
+  color: #3abf7d;
 }
 
 .rental-form {
   position: relative;
-  margin-left: 150px;
+  bottom: 65px;
+  left: 250px;
 }
 
-.form-inline {
-  padding-left: 50px;
+// .banner {
+//   position: relative;
+//   background-size: cover;
+//   background-position: top;
+//   background-repeat: round;
+//   background-blend-mode: saturation;
+//   padding: 250px 0;
+// }
 
-}
+// .form-inline {
+//   padding-left: 50px;
+// }
 
-.title {
-    margin-left: 37px;
-  }
+// .title {
+//     margin-left: 37px;
+//   }
 
 a {
   text-decoration: none;
