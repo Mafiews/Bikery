@@ -1,7 +1,11 @@
 class RentalsController < ApplicationController
   def create
-    start_date = Date.parse rental_params[:start_date]
-    end_date = Date.parse rental_params[:end_date]
+    if rental_params[:start_date].nil? || rental_params[:end_date].nil?
+      redirect_to bike_path(params[:bike_id])
+    else
+      start_date = Date.parse rental_params[:start_date]
+      end_date = Date.parse rental_params[:end_date]
+    end
     sum_days = (end_date - start_date).to_i
     @rental = Rental.new(start_date:start_date, end_date:end_date)
     @rental.bike_id = params[:bike_id]
@@ -33,8 +37,9 @@ class RentalsController < ApplicationController
   def update
     set_rental
     if rental_params[:start_date].nil? && rental_params[:end_date].nil?
-      @rental.content = rental_params[:content]
-      @rental.rating = rental_params[:rating]
+      @rental.content = review_params[:content]
+      @rental.rating = review_params[:rating]
+      authorize @rental
       @rental.save
     else
       start_date = Date.parse rental_params[:start_date]
@@ -45,10 +50,6 @@ class RentalsController < ApplicationController
       @rental.update(start_date: start_date, end_date: end_date, rental_price: sum_price)
       redirect_to rentals_path
     end
-  end
-
-  def review
-    raiser
   end
 
   def update_confirmation
@@ -70,8 +71,12 @@ class RentalsController < ApplicationController
     params.require().permit(:confirmation)
   end
 
+  def review_params
+    params.require(:rental).permit(:rating, :content)
+  end
+
   def rental_params
-    params.require(:rental).permit(:start_date, :end_date, :rating, :content)
+    params.require(:rental).permit(:start_date, :end_date)
   end
 
   def set_rental
