@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 2020_08_20_084728) do
     t.bigint "bike_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "confirmation", default: false
+    t.boolean "confirmation"
     t.index ["bike_id"], name: "index_rentals_on_bike_id"
     t.index ["user_id"], name: "index_rentals_on_user_id"
   end
