@@ -24,8 +24,8 @@
         </div>
       </div>
 
-      <div class="col-6 mt-4">
-        <div class="" style="height:250px; width: 36rem;">
+      <div class="col-7 mt-4">
+        <div class="" style="height:250px; width: 38rem;">
           <h3>My booking history</h3>
           <% @my_rentals.each do |my_rental| %>
           <div class="notification">
@@ -40,12 +40,16 @@
               <p class="d-inline p-2"><i class="fas fa-euro-sign"></i> <%= my_rental.rental_price %></p>
             </div>
 
+
             <div class="notification-actions">
               <%= link_to edit_rental_path(my_rental) do%>
                 Edit <i class="fas fa-pencil-alt"></i>
               <% end %>
               <%= link_to rental_path(my_rental), method: :delete, data: { confirm: "Are you sure?" } do %>
                 Delete <i class="far fa-trash-alt"></i>
+              <% end %>
+              <%= link_to rental_path(my_rental) do%>
+                Review <i class="fas fa-star"></i>
               <% end %>
             </div>
           </div>
