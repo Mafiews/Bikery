@@ -32,8 +32,9 @@ import { initAutocomplete } from '../plugins/init_autocomplete';
 
 
 
+
 // Internal imports, e.g:
-import Typed from 'typed.js';
+
 
 // import { initSelect2 } from '../components/init_select2';
 
@@ -42,8 +43,8 @@ document.addEventListener('turbolinks:load', () => {
     flatpickr(".datepicker", {});
   // Call your functions here, e.g:
   // initSelect2();
-  initMapbox();
   initAutocomplete();
+  initMapbox();
 });
 
 

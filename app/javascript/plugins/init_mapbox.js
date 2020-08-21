@@ -1,8 +1,8 @@
 import mapboxgl from 'mapbox-gl';
 
-const mapElement = document.getElementById('map');
 
 const initMapbox = () => {
+  const mapElement = document.getElementById('map');
   if (mapElement) {
     const buildMap = () => {
       const lat = mapElement.dataset.lat
@@ -12,7 +12,7 @@ const initMapbox = () => {
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v11',
       center: [lat, lng],
-      zoom: 12
+      zoom: 13
       });
     };
 
@@ -35,7 +35,7 @@ const initMapbox = () => {
     const fitMapToMarkers = (map, markers) => {
       const bounds = new mapboxgl.LngLatBounds();
       markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
-      map.fitBounds(bounds, { padding: 70, maxZoom: 12});
+      map.fitBounds(bounds, { padding: 70, maxZoom: 13});
     };
 
     const map = buildMap();
