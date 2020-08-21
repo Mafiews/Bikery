@@ -1,16 +1,35 @@
-<%= render 'shared/navbar' %>
-
 <div class="container">
-  <div class="row justify-content-between">
-      <div class="col-4">
-        <h1>user info</h1>
+  <div class="row justify-content-center">
+      <div class="col-4 mt-4">
+        <div class="card" style="width: 18rem;">
+          <% if current_user.photo.attached? %>
+            <%= cl_image_tag current_user.photo.key, class: "avatar-large mb-1" %>
+          <% else %>
+            <%= image_tag "https://oozou.com/assets/placeholder-e61f8e40396b6f3d78281bfa3b2d5ca202616f0e3f9931d451a49d4c2ddfcfea.jpg", alt: "empty-avatar", class: "avatar mb-1" %>
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title"><%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %></h5>
+            <p class="card-text"><%= current_user.address %></p>
+            <p class="card-text"><i class="fas fa-window-restore"></i> Total <%= pluralize current_user.rentals.size,"rental" %></p>
+            <p class="card-text"><i class="fas fa-bicycle"></i> Your owned <%= pluralize current_user.bikes.size, "bike"  %></p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <%= link_to "Add a bike to rent ", new_bike_path, class: "" %>
+            </li>
+            <li class="list-group-item">
+              <%= link_to "Update user information", edit_user_registration_path, class: "" %>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="col-8">
-        <div class="col-12">
+
+      <div class="col-6 mt-4">
+        <div class="" style="height:250px; width: 36rem;">
           <h3>My booking history</h3>
           <% @my_rentals.each do |my_rental| %>
           <div class="notification">
-            <% if current_user.photo.attached? %>
+            <% if my_rental.bike.photo.attached? %>
               <%= cl_image_tag my_rental.bike.photo.key, class: "avatar-large mb-1" %>
             <% end %>
 
@@ -31,9 +50,9 @@
             </div>
           </div>
           <% end %>
-
         </div>
-        <div class="col-12">
+
+        <div class="" style="height:250px; width: 36rem;">
         <% if @ask_rentals.length >0 %>
           <h3>Waiting request</h3>
           <% @ask_rentals.each do |r_request| %>
@@ -51,9 +70,8 @@
               </div>
 
               <div class=“notification-actions”>
-                <%= button_to "confirm", rental_update_confirmation_path(r_request, validated:'true'), method: :post  %>
-                  Accept <i class=“far fa-check-square”></i>
-
+                <%= button_to "Accept", rental_update_confirmation_path(r_request, validated:'true'), method: :post, class:"d.inline btn btn-outline-success"  %>
+                <%= button_to "Reject ", rental_update_confirmation_path(r_request, validated:'false'), method: :post, class:"d.inline btn btn-outline-danger" %>
               </div>
 
             </div>

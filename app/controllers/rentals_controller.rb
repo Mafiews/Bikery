@@ -49,6 +49,7 @@ class RentalsController < ApplicationController
     set_rental
     authorize @rental
     @rental.update(confirmation: params[:validated])
+    redirect_to dashboard_path
   end
 
   def destroy
