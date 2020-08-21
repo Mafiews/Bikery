@@ -1,7 +1,9 @@
-<% if bike.photo.attached? %>
-  <%= cl_image_tag bike.photo.key, width: 200, class: 'mb-2' %>
+<%= link_to bike_path(bike) do %>
+  <% if bike.photo.attached? %>
+    <%= cl_image_tag bike.photo.key, width: 200, class: 'mb-2' %>
+  <% end %>
 <% end %>
-<h3><%= bike.model %></h3>
+<h3><%= link_to bike.model, bike_path(bike), style: 'text-decoration:none; color: black' %></h3>
 <i class="fas fa-map-marker-alt px-2"></i> <%= bike.address %>
 <br>
 <i class="fas fa-bicycle"></i> <%= bike.bike_type %>
