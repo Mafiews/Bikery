@@ -19,7 +19,7 @@
         <p><i class="fas fa-info-circle"></i> <strong>Description :</strong></p>
         <p><%= @bike.description %></p>
         <% unless @rentals.nil? || @ratings == 0 %>
-          <p><i class="fas fa-star"></i> <%= @ratings_sum.div(@ratings) unless @ratings == 0 %> <em>(<%= @ratings %> <%= @ratings = 1 ? "review" : "reviews" %>)</em></p>
+          <p><i class="fas fa-star"></i> <%= @ratings_sum.div(@ratings) unless @ratings == 0 %> <em>(<%= @ratings %> <%= @ratings == 1 ? "review" : "reviews" %>)</em></p>
           <% @rentals.each do |rental| %>
             <% if rental.content.nil? == false %>
               <p><em><%= rental.content %> <span class="text-muted">(<%= @renter %>, <%= rental.end_date %>)</span></em></p>

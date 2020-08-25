@@ -41,6 +41,7 @@ class RentalsController < ApplicationController
       @rental.rating = review_params[:rating]
       authorize @rental
       @rental.save
+      redirect_to rental_path(@rental)
     else
       start_date = Date.parse rental_params[:start_date]
       end_date = Date.parse rental_params[:end_date]
@@ -48,7 +49,7 @@ class RentalsController < ApplicationController
       sum_price = sum_days * @rental.bike.price
       authorize @rental
       @rental.update(start_date: start_date, end_date: end_date, rental_price: sum_price)
-      redirect_to rentals_path
+      redirect_to rental_path(@rental)
     end
   end
 
