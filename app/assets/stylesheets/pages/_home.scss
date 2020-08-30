@@ -1,7 +1,7 @@
 // Specific CSS for your home-page
 .title-site {
   position: absolute;
-  top: -230px;
+  top: 100px;
   left: 80px;
   p {
     font-size: 24px;
@@ -16,9 +16,13 @@
 }
 
 .rental-form {
+  position: absolute;
+  bottom: 200px;
+  right: 50px;
+}
+
+.banner-home {
   position: relative;
-  bottom: 65px;
-  left: 250px;
 }
 
 // .form-inline {
